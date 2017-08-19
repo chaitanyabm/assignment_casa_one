@@ -1,0 +1,78 @@
+<nav class="navbar navbar-inverse nav-borderd" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <!-- dont change this id. It is being used in notifications.js  -->
+         
+        <li><%= link_to('LOGOUT', destroy_user_session_path, :method => :delete) %></li>
+         
+      </ul>
+    </div>
+    <!--/.navbar-collapse -->
+  </div>
+</nav>
+<!-- navigation menu ends here-->
+
+<%= link_to 'New Post', new_post_path %>
+
+
+<!-- secondary Navigation-->
+<div class="sec-nav admin-sec-nav">
+  <div class="container">
+    <h4>MANAGE Posts</h4>
+  </div>
+</div>
+
+
+<div class="container pb20">
+  <div class="tab-content mt20">
+    <div id="all" class="tab-pane fade in active">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table cellspacing="0" width="100%">
+              <thead>
+                  <tr>
+                    <th>
+                      Title </th>
+                    <th>
+                      Description</th>
+                      <th>
+                      Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+            <% if @posts.present? %>
+              <% @posts.each do |post| %>
+              <tr>
+              <td><%= post.title %></td>
+              <td><%= post.description %></td>
+              <td class="actioncell pb10">
+              <%= link_to 'show', post_path(post) %>
+              <%= link_to 'edit', edit_post_path(post, page: params[:page]) %>
+              <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+             <% end %>
+            <% else %>
+              <tr>
+              <td colspan="6" class="center">No post found.</td>
+              </tr>
+            <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+</div>
+
+

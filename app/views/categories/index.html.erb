@@ -1,0 +1,43 @@
+<%= link_to 'New Category', new_category_path %>
+<!-- secondary Navigation-->
+<div class="sec-nav admin-sec-nav">
+  <div class="container">
+    <h4>MANAGE CATEGORIES</h4>
+  </div>
+</div>
+
+        <div>
+            <table cellspacing="0" width="100%">
+              <thead>
+                  <tr>
+                    <th>
+                      Category Title </th>
+                    <th>
+                      Category Description</th>
+                      <th>
+                      Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+            <% if @categories.present? %>
+              <% @categories.each do |category| %>
+              <tr>
+              <td><%= category.category_title %></td>
+              <td><%= category.category_description %></td>
+              <td class="actioncell pb10">
+              <%= link_to 'show', category_path(category) %>
+              <%= link_to 'edit', edit_category_path(category) %>
+              <%#= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+             <% end %>
+            <% else %>
+              <tr>
+              <td colspan="6" class="center">No categries found.</td>
+              </tr>
+            <% end %>
+              </tbody>
+            </table>
+    </div>
+</div>
+
+

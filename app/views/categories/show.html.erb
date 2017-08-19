@@ -1,0 +1,47 @@
+<p>
+  <strong>title:</strong>
+  <%= @category.category_title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @category.category_description %>
+</p>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
+
+<div class="sec-nav admin-sec-nav">
+  <div class="container">
+    <h4>POSTS ASOCIATED WITH THE CATEGORY</h4>
+  </div>
+</div>
+
+        <div>
+            <table cellspacing="0" width="100%">
+              <thead>
+                  <tr>
+                    <th>
+                      Post Title </th>
+                    <th>
+                      Post Description</th>
+                  </tr>
+              </thead>
+              <tbody>
+            <% if @posts.present? %>
+              <% @posts.each do |post| %>
+              <tr>
+              <td><%= post.title %></td>
+              <td><%= post.description %></td>
+              </tr>
+             <% end %>
+            <% else %>
+              <tr>
+              <td colspan="6" class="center">No posts found associated with the category.</td>
+              </tr>
+            <% end %>
+              </tbody>
+            </table>
+    </div>
+</div>
+
