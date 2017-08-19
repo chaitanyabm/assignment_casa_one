@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
   # GET /categorys/1
   # GET /categorys/1.json
   def show
-    @posts = Post.where(category: 1) #all posts associated with the category
+    @posts = Post.where(category: @category.id) #all posts associated with the category
   end
 
   # GET /categorys/new

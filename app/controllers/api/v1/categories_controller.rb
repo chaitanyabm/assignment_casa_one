@@ -12,7 +12,9 @@ module Api
   # GET /categorys/1
   # GET /categorys/1.json
   def show
-    @posts = Post.where(category: 1) #all posts associated with the category
+    category = Category.find_by_id(params[:id])
+    post = Post.where(category: category.id) #all posts associated with the category
+    render json: {status: 'SUCCESS', message: 'Loaded Category', data: category},status: :ok 
   end
 
   # GET /categorys/new
@@ -28,15 +30,15 @@ module Api
   # category /categorys
   # category /categorys.json
   def create
-    @category = Category.new(category_params)
+    category = Category.new(category_params)
 
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: 'category was successfully created.' }
-        format.json { render :show, status: :created, location: @category }
+        render json: {status: 'SUCCESS', message: 'Category Saved', data: category},status: :ok 
       else
         format.html { render :new }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+        render json: {status: 'ERRORS', errors: 'Category Not Saved', data: category.errors},status: :unprocessable_entity 
       end
     end
   end
