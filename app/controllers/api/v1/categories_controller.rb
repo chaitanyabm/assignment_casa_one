@@ -1,6 +1,7 @@
 module Api
 	module V1
-		class CategoriesController < ApplicationController
+		class CategoriesController < BaseController
+      before_action :authenticate!
   		before_action :set_category, only: [:show, :edit, :update, :destroy]
   # GET /categorys
   # GET /categorys.json
@@ -18,7 +19,6 @@ module Api
   # GET /categorys/new
   def new
     @category = Category.new
-    
   end
 
   # GET /categorys/1/edit
