@@ -18,7 +18,7 @@ module ApplicationHelper
 
   def fetch_category
 
-    categories = Category.all.collect{|category| [category.category_title.capitalize,category.id]}  
+    categories = Category.all.collect{|category| [category.category_title,category.id]}  
   
   end
 
